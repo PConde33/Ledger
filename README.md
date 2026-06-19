@@ -46,7 +46,11 @@ Now search **“Ledger”** in your activities and pin it to the dock if you lik
 Moved the folder? Just re-run the first line. To **remove** it from your apps:
 `rm ~/.local/share/applications/Ledger.desktop`.
 
-## What it does
+## Features (v0.1)
+
+The first tagged release. In short: a linear-calendar + project task manager with
+morning/afternoon day slots, drag-and-drop scheduling, two-way checkboxes, and
+adjustable, savable block widths — all backed by a plain Markdown file.
 
 - **Linear calendar** — every day of the month as a left-to-right strip of blocks,
   one tab per month, year arrows to travel. Resize the blocks with the slider in
@@ -101,5 +105,5 @@ Everything serializes to/from a `.md` file:
 | `index.html`     | markup |
 | `style.css`      | the paper aesthetic |
 | `app.js`         | calendar, list, drag/drop, Markdown read/write, native bridge |
-| `README.md` / `FEATURES.md` | docs (FEATURES = the v0.1 feature list) |
+| `README.md`      | this file — setup + feature summary |
 | `tasks.md`       | your task data — created on first save, **git-ignored** |
