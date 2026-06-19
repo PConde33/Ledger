@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=Ledger
+GenericName=Task Manager
+Comment=A paper task manager backed by a Markdown file
+# The Exec/Path below use a placeholder that README.md's install step swaps for
+# your clone folder. No absolute path is hard-coded in this committed file.
+Exec=python3 @DIR@/ledger.py
+Path=@DIR@
+Icon=ledger
+Terminal=false
+Categories=Office;ProjectManagement;
+Keywords=tasks;todo;calendar;markdown;
+StartupNotify=true
+StartupWMClass=Ledger

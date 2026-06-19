@@ -27,38 +27,23 @@ python3 ledger.py ~/notes.md     # …or any file you point it at
 
 ## Add it to your Linux apps
 
-A launcher embeds an absolute path to wherever you cloned Ledger, so it's
-**not committed** to the repo. Generate one for your machine (the `$PWD` below
-fills in the current folder — no hard-coded paths), then install it with the icon.
-Run this from the repo folder:
+The committed `Ledger.desktop` uses a `@DIR@` placeholder instead of a hard-coded
+path. The install step fills it in with your clone's location (`$PWD`) and writes
+the result straight into your applications folder — the repo's template is never
+modified. Run this from the repo folder:
 
 ```bash
-# 1. generate a launcher pointing at THIS folder
-cat > Ledger.desktop <<EOF
-[Desktop Entry]
-Type=Application
-Name=Ledger
-GenericName=Task Manager
-Comment=A paper task manager backed by a Markdown file
-Exec=python3 $PWD/ledger.py
-Path=$PWD
-Icon=ledger
-Terminal=false
-Categories=Office;ProjectManagement;
-Keywords=tasks;todo;calendar;markdown;
-StartupNotify=true
-StartupWMClass=Ledger
-EOF
+# fill @DIR@ with this folder and install the launcher
+sed "s|@DIR@|$PWD|g" Ledger.desktop > ~/.local/share/applications/Ledger.desktop
 
-# 2. install the launcher + icon, then refresh caches (optional)
-install -Dm644 Ledger.desktop ~/.local/share/applications/Ledger.desktop
-install -Dm644 icon.png       ~/.local/share/icons/hicolor/256x256/apps/ledger.png
+# install the icon (so the launcher's `Icon=ledger` resolves), refresh caches
+install -Dm644 icon.png ~/.local/share/icons/hicolor/256x256/apps/ledger.png
 update-desktop-database ~/.local/share/applications 2>/dev/null || true
 gtk-update-icon-cache  ~/.local/share/icons/hicolor 2>/dev/null || true
 ```
 
 Now search **“Ledger”** in your activities and pin it to the dock if you like.
-Moved the folder? Just re-run the block above. To **remove** it from your apps:
+Moved the folder? Just re-run the first line. To **remove** it from your apps:
 `rm ~/.local/share/applications/Ledger.desktop`.
 
 ## What it does
@@ -111,7 +96,7 @@ Everything serializes to/from a `.md` file:
 | file | purpose |
 |------|---------|
 | `ledger.py`      | the app — GTK/WebKit window + direct file read/write bridge |
-| `Ledger.desktop` | Linux menu launcher — **generated locally, git-ignored** (machine-specific paths) |
+| `Ledger.desktop` | Linux menu launcher template (`@DIR@` placeholder — filled in at install) |
 | `icon.png` / `icon.svg` | app icon |
 | `index.html`     | markup |
 | `style.css`      | the paper aesthetic |
