@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ledger — a paper task manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Spectral:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="masthead">
+    <div class="brand">
+      <h1 class="logo">Ledger</h1>
+      <p class="tagline">a paper task manager</p>
+    </div>
+
+    <nav class="months" id="months" aria-label="Month tabs"></nav>
+
+    <div class="filebar">
+      <span class="file-state" id="fileState">unsaved · local</span>
+      <button class="btn" id="openBtn" title="Open an existing .md file">Open .md</button>
+      <button class="btn btn--ink" id="saveBtn" title="Save to a .md file">Save .md</button>
+    </div>
+  </header>
+
+  <main class="sheet">
+    <section class="calendar" id="calendar" aria-label="Linear calendar">
+      <div class="calendar__head">
+        <h2 class="calendar__title" id="calTitle">Month</h2>
+        <div class="cal-tools">
+          <label class="size-ctl" title="Block width (or Ctrl + scroll over the calendar)">
+            <span class="size-ctl__small">▭</span>
+            <input type="range" id="blockSize" min="110" max="360" step="10" />
+            <span class="size-ctl__big">▭</span>
+          </label>
+          <button class="size-save" id="daySizeSave" title="Remember these widths for next time">save</button>
+          <div class="year-nav">
+            <button class="ghost" id="prevYear" aria-label="Previous year">&larr;</button>
+            <span id="yearLabel" class="year">2026</span>
+            <button class="ghost" id="nextYear" aria-label="Next year">&rarr;</button>
+          </div>
+        </div>
+      </div>
+      <div class="calendar__days" id="days" role="list"></div>
+    </section>
+
+    <section class="dock" id="dock" aria-label="Project list">
+      <div class="dock__head">
+        <h2 class="dock__title">Projects</h2>
+        <p class="dock__hint">drag a task onto a day · drop here to unschedule · Ctrl+Enter adds a task</p>
+        <label class="size-ctl" title="Card width (or Ctrl + scroll over the projects)">
+          <span class="size-ctl__small">▭</span>
+          <input type="range" id="projSize" min="180" max="460" step="10" />
+          <span class="size-ctl__big">▭</span>
+        </label>
+        <button class="size-save" id="projSizeSave" title="Remember these widths for next time">save</button>
+        <button class="btn" id="addProject">+ Project</button>
+      </div>
+      <div class="dock__list" id="projects"></div>
+    </section>
+  </main>
+
+  <footer class="footrule">
+    <span>Tasks live in a plain Markdown file. Check a box anywhere — it syncs everywhere.</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

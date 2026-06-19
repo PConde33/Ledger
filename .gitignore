@@ -1,0 +1,9 @@
+# Personal task data — stays local, never committed
+tasks.md
+
+# Launcher with machine-specific absolute paths (see README to regenerate)
+Ledger.desktop
+
+# Python cache
+__pycache__/
+*.pyc
